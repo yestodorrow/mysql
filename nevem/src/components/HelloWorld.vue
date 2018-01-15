@@ -6,6 +6,7 @@
             <el-input v-model="name" placeholder="名称"></el-input>
             <el-input v-model="price" placeholder="价格"></el-input>
             <el-button type="primary" @click="addUser">提交</el-button>
+            <el-button type="primary" @click="findUser">查找</el-button>
         </form>
     </div>
 </template>
@@ -28,12 +29,17 @@
             this.$http.post('/api/user/addUser', {
                 name: name,
                 price: price
-            },{}).then((response) => {
+            },{}).then(function(response) {
                 console.log(response);
             })
         },
         aaa(){
             this.el="成功引入element";
+        },
+        findUser(){
+            this.$http.get("/api/user/findUser").then(function (res){
+                console.log(res);
+            })
         }
     }
     }
